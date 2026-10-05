@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>나의 포트폴리오</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>나의 포트폴리오</h1>
+
+<h2>안녕하세요! 👋</h2>
+
+<p class="intro">
+    웹 개발자를 목표로 공부하고 있습니다.
+    HTML, CSS, JavaScript를 공부하며
+    직접 웹 프로젝트를 만들고 있습니다.
+</p>
+
+<p class="goal">
+    게임과 웹 기술에 관심이 있으며,
+    꾸준히 프로젝트를 만들면서 개발 실력을 키우고 있습니다.
+</p>
+    <h2>🛠 기술</h2>
+
+<div class="skills">
+    <span>HTML</span>
+    <span>CSS</span>
+    <span>JavaScript</span>
+</div>
+
+    <h2>📁 프로젝트</h2>
+
+<h3>🎮 게임 정보</h3>
+
+<div class="search-box">
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="게임 이름을 검색하세요"
+    >
+
+    <button onclick="searchGame()">검색</button>
+</div>
+
+<p class="project-description">
+    HTML, CSS, JavaScript를 활용하여 만든 게임 정보 사이트입니다.
+    게임별 이미지와 정보를 확인할 수 있으며,
+    상세보기 버튼을 통해 게임 정보를 열고 닫을 수 있습니다.
+</p>
+
+<p class="project-tech">
+    사용 기술: HTML · CSS · JavaScript
+</p>
+
+<h3>주요 기능</h3>
+
+<ul class="feature-list">
+    <li>게임 이미지와 게임 정보를 카드 형태로 표시</li>
+    <li>상세보기 버튼을 이용한 정보 열기/닫기</li>
+    <li>JavaScript를 이용한 화면 변경</li>
+    <li>CSS를 이용한 카드 디자인 구현</li>
+</ul>
+
+<div class="game-list">
+
+    <div class="game-card" data-name="GTA 5">
+    <img src="images/gta.jpg" alt="GTA 5">
+    <h3>GTA 5</h3>
+    <p>오픈월드 액션 게임</p>
+    <button onclick="showGame('gta')">상세보기</button>
+    <p id="gtaInfo" class="game-detail"></p>
+</div>
+
+    <div class="game-card" data-name="엘든 링">
+    <img src="images/elden.jpg" alt="엘든 링">
+        <h3>엘든 링</h3>
+        <p>판타지 액션 RPG</p>
+        <button onclick="showGame('elden')">상세보기</button>
+        <p id="eldenInfo" class="game-detail"></p>
+    </div>
+
+    <div class="game-card" data-name="마인크래프트">
+    <img src="images/minecraft.jpg" alt="마인크래프트">
+    <h3>마인크래프트</h3>
+    <p>샌드박스 게임</p>
+    <button onclick="showGame('minecraft')">상세보기</button>
+    <p id="minecraftInfo" class="game-detail"></p>
+</div>
+
+</div>
+
+<p id="gameInfo"></p>
+
+<script>
+    const games = {
+        gta: {
+            title: "GTA 5",
+            genre: "액션 어드벤처",
+            platform: "PC, 콘솔",
+            feature: "오픈월드"
+        },
+
+        elden: {
+            title: "엘든 링",
+            genre: "액션 RPG",
+            platform: "PC, 콘솔",
+            feature: "판타지 세계"
+        },
+
+        minecraft: {
+            title: "마인크래프트",
+            genre: "샌드박스",
+            platform: "PC, 콘솔",
+            feature: "자유로운 건축"
+        }
+    };
+
+
+    function showGame(game) {
+
+        let info;
+
+        if (game === "gta") {
+            info = document.getElementById("gtaInfo");
+        }
+
+        else if (game === "elden") {
+            info = document.getElementById("eldenInfo");
+        }
+
+        else if (game === "minecraft") {
+            info = document.getElementById("minecraftInfo");
+        }
+
+
+        if (info.innerHTML === "") {
+
+            info.innerHTML =
+                "장르: " + games[game].genre + "<br>" +
+                "플랫폼: " + games[game].platform + "<br>" +
+                "특징: " + games[game].feature;
+
+        } else {
+
+            info.innerHTML = "";
+
+        }
+    }
+    function searchGame() {
+
+    const searchText =
+        document.getElementById("searchInput").value.toLowerCase();
+
+    const cards =
+        document.querySelectorAll(".game-card");
+
+    cards.forEach(function(card) {
+
+        const gameName =
+            card.dataset.name.toLowerCase();
+
+        if (gameName.includes(searchText)) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+
+    });
+}
+</script>
+
+</body>
+</html>
